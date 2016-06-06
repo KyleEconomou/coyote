@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
     page_object = Nokogiri::HTML(open("https://kat.cr/usearch/game/"))
 
-    html_data = page_object.xpath("//a[@class='icon16']/@href").map do |n|
+    html_data = page_object.xpath("//a[@title='Torrent magnet link']/@href").map do |n|
     	n.text
     end
     	
