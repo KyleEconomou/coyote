@@ -2,9 +2,39 @@ html {
 
 	background: #888;
 	color: #fff;
+	font-family: sans-serif;
 }
 
-a {
+.result-container {
 
-	color: #fff;
+	width: 49%;
+	display: inline-block;
+	height: 20px;
+	position: relative;
+
+	&:nth-child(even) {
+
+		background: #eee;
+	}
+
+	&:nth-child(odd) {
+
+		background: #ddd;
+	}
+
+	.title {
+
+		display: inline-block;
+	}
+
+	.magnet-container {
+
+		background: #000;
+
+		a {
+			color: #fff;
+			padding: 5px;
+			text-decoration: none;
+		}
+	}
 }
