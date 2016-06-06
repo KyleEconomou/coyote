@@ -4,9 +4,12 @@ class HomeController < ApplicationController
   	require 'open-uri'
     require 'nokogiri'
 
-    search = Nokogiri::HTML(open("https://kat.cr/usearch/game/"))
+    @sup= Nokogiri::HTML(open("https://kat.cr/usearch/game/"))
+    
+    @sup.xpath('//a').each do |node|
+    	puts node.text
+    end
 
-    @sup = search
 
   end
 end
