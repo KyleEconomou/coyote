@@ -4,12 +4,15 @@ class HomeController < ApplicationController
   	require 'open-uri'
     require 'nokogiri'
 
-    @sup= Nokogiri::HTML(open("https://kat.cr/usearch/game/"))
-    
-    @sup.xpath('//a').each do |node|
-    	puts node.text
-    end
+    # .cellMainLink
 
+    page_object = Nokogiri::HTML(open("https://kat.cr/usearch/game/"))
+
+    html_data = page_object.xpath("//a[@class='icon16']/@href").map do |n|
+    	n.text
+    end
+    	
+    @sup = html_data
 
   end
 end
