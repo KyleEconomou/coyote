@@ -44,6 +44,7 @@
 		margin: 0 auto;
 		width: 90%;
 		top: 60px;
+		text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
 
 		h1 {
 
@@ -61,6 +62,8 @@
 			width: 100%;
 			color: #5D92B1;
 			padding: 0 10px;
+			// border-bottom: 1px solid #545454;
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 
 			&:nth-child(even) {
 
@@ -75,7 +78,7 @@
 
 				width: 79%;
 				display: inline-block;
-				line-height: 39px;
+				line-height: 41px;
 			}
 
 			.magnet-link {
