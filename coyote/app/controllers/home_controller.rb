@@ -4,28 +4,50 @@ class HomeController < ApplicationController
   	require 'open-uri'
     require 'nokogiri'
 
-    page_object = Nokogiri::HTML(open("https://kat.cr/usearch/game%20of%20thrones/"))
+    #kat = kickass torrents
 
-    magnet_links = page_object.xpath("//a[@title='Torrent magnet link']/@href").map do |n|
-    	n.text
+    kat_page_object = Nokogiri::HTML(open("https://kat.cr/usearch/game%20of%20thrones/"))
+
+    kat_entire_result = kat_page_object.xpath('//tr[contains(@class, "odd") or contains(@class, "even")]')
+
+    kat_result_data = []
+
+    # kat_magnet_link = kat_page_object.xpath("//a[@title="magnet"]/@href")
+
+    kat_entire_result.each do |result|
+    	title = result.css('.cellMainLink').text
+    	magnet = result.css("a[data-nop]").attr('href')
+    	kat_result_data << [title, magnet]
     end
 
-    @sup = magnet_links
+    # kat_torrent_titles = kat_entire_result.map{ |node| node['.cellMainLink'] }
 
-    torrent_titles = page_object.xpath("//a[@class='cellMainLink']").map do |n|
-    	n.text
-    end
+    # kat_parsed_result = kat_entire_result.xpath('//tr').map do |n|
+    # 	Hash[ n.map { |k, v| [k.to_sym, v.to_s] } ]
+    # end
 
-    @sup = magnet_links
-    @chillin = torrent_titles
-    
-  #   entire_result = page_object.xpath("//tr").each do |n|
-		# doc.css("NewsResult").map{|nr| [nr.at('Title'),nr.at('Snippet'),nr.at('Url'),nr.at('Source')].map(&:text)}
-  #   end
+    # @sup = magnet_links
 
-  #   @result = entire_result
-  #   # @torrent_title = entire_result.torrent_title
-  #   # @magnet_link = entire_result.magnet_link
+    # kat_torrent_titles = kat_page_object.xpath("//a[@class='cellMainLink']").map do |n|
+    # 	kat_title << n.text
+    # end
+
+
+
+    # kat_magnet_links = kat_page_object.xpath("//a[@title='Torrent magnet link']/@href").map do |x|
+    # 	kat_magnet << x.text
+    # end
+
+    @result = kat_result_data
+    # n.xpath("//a[@class='cellMainLink']").push(kat_title)
+    # n.xpath("//a[@title='Torrent magnet link']/@href").push(kat_magnet)
+
+    # @sup = magnet_links
+    # @chillin = torrent_titles
+
+
+	#  # @torrent_title = entire_result.torrent_title
+	#  # @magnet_link = entire_result.magnet_link
 
   end
 end

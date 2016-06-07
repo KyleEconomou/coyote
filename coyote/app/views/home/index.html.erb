@@ -1,12 +1,5 @@
 <h1>HELLO WORLD</h1>
-<% @sup.each do |result| %>
-<div class="result-container">
-	<div class="magnet-container">
-		<a href="<%= result %>">magnet link</a>	
-	</div>
-</div>
-<% end %>
-
-<% @chillin.each do |result| %>
-	<p class="title"><%= result %></p>	
+<% @result.each do |result| %>
+		<span class="torrent-title"><%= result[0] %></span>
+		<a class="magnet-link" href="<%= result[1] %>" title="magnet">magnet</a>
 <% end %>
